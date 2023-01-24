@@ -6,6 +6,7 @@ import ForgotPassword from "./ForgotPassword";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "../Context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UpdateProfile from "./UpdateProfile";
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
             <Routes>
               <Route path="/"
                 element={<PrivateRoute> <Dashboard /> </PrivateRoute>}>
+
+              </Route>
+              <Route path="/update-profile"
+                element={<PrivateRoute> <UpdateProfile /> </PrivateRoute>}>
 
               </Route>
               <Route path="/signup" element={<Signup />} />
