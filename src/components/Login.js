@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
 import {Form, Button, Card, Alert} from "react-bootstrap"
 import { useAuth } from "../Context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
     const emailRef = useRef();
@@ -9,7 +9,7 @@ export default function Login() {
     const { login } = useAuth();
     const [error, setError] = useState("");
     const [isLoading, setIsloading] = useState(false)
-
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -18,7 +18,8 @@ export default function Login() {
         try {
             setError("");
             setIsloading(true);
-            await login(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value);
+            navigate('/');
         } catch(e) {
             setError("Failed to sign in")
         }
